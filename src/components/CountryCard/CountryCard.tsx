@@ -7,7 +7,7 @@ function CountryCard({
   countries,
   setCountries,
 }: PropsWithChildren<CountryCardProps>) {
-  const handleCountryClick = () => {
+  const handleCountryClick = (): void => {
     const index = countries.findIndex((currentCountry) => {
       return currentCountry.name.common === country.name.common;
     });

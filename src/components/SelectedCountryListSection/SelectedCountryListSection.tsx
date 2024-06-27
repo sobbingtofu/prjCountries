@@ -9,7 +9,7 @@ function SelectedCountryListSection({
 }: PropsWithChildren<CountryListSectionProps>) {
   return (
     <>
-      <h1 className="mx-auto w-max text-center text-3xl font-bold my-12">
+      <h1 className="mx-auto w-max text-center text-3xl font-bold mt-4 mb-12">
         Selected Countries
       </h1>
       <div className={ListTailwind}>
