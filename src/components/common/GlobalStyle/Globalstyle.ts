@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   body {
     font-family: "Noto Sans KR", sans-serif;
+    background-color:#ebecee;
   }
   .playwrite-co {
   font-family: "Playwrite CO", cursive;

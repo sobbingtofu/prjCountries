@@ -1,26 +1,30 @@
 import { PropsWithChildren } from "react";
 import { CountryCardProps } from "../../types/CountryCardProps.type";
+import { CountryCardTailwind } from "../common/Styles/CountryCard.style";
 
 function CountryCard({
-  flag,
-  countryName,
-  capitalName,
+  country,
+  countries,
+  setCountries,
 }: PropsWithChildren<CountryCardProps>) {
-  const handleCountryClick = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-  ) => {
-    console.log(event.currentTarget.id);
+  const handleCountryClick = () => {
+    const index = countries.findIndex((currentCountry) => {
+      return currentCountry.name.common === country.name.common;
+    });
+    countries[index].selected = !countries[index].selected;
+    setCountries([...countries]);
   };
   return (
     <>
       <div
         onClick={handleCountryClick}
-        className="flex flex-col items-center justify-start h-max bg-red-200 rounded-3xl p-8 cursor-pointer"
-        id={countryName}
+        className={CountryCardTailwind}
+        id={country.name.common}
       >
-        <img src={flag} className="h-[100px]" />
-        <p className="mt-8 font-bold text-xl">{countryName}</p>
-        <p className="mt-4">{capitalName}</p>
+        <img src={country.flags.png} className="h-[100px]" />
+        <p className="mt-8 font-bold text-xl">{country.name.common}</p>
+        <p className="mt-4">{country.capital}</p>
+        <p>{country.selected}</p>
       </div>
     </>
   );

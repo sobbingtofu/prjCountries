@@ -1,6 +1,7 @@
+import { tCountry } from "./Country.type";
+
 export interface CountryCardProps {
-  id: string;
-  flag: string;
-  countryName: string;
-  capitalName: string[];
+  country: tCountry;
+  countries: tCountry[];
+  setCountries: React.Dispatch<React.SetStateAction<tCountry[]>>;
 }
