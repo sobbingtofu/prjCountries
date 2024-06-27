@@ -1,6 +1,10 @@
 import { PropsWithChildren } from "react";
 import { CountryCardProps } from "../../types/CountryCardProps.type";
 import { CountryCardTailwind } from "../common/Styles/CountryCard.style";
+import {
+  deleteCountryNameFromSelectedCountries,
+  postCountryNameToSelectedCountries,
+} from "../../api/jsonServer";
 
 function CountryCard({
   country,
@@ -11,6 +15,11 @@ function CountryCard({
     const index = countries.findIndex((currentCountry) => {
       return currentCountry.name.common === country.name.common;
     });
+    if (!countries[index].selected) {
+      postCountryNameToSelectedCountries(country.name.common);
+    } else {
+      deleteCountryNameFromSelectedCountries(country.name.common);
+    }
     countries[index].selected = !countries[index].selected;
     setCountries([...countries]);
   };
