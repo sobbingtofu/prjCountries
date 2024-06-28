@@ -5,12 +5,11 @@ import {
   deleteCountryNameFromSelectedCountries,
   postCountryNameToSelectedCountries,
 } from "../../api/jsonServer";
+import useCountriesStore from "../../zustand/countriesStore";
 
-function CountryCard({
-  country,
-  countries,
-  setCountries,
-}: PropsWithChildren<CountryCardProps>) {
+function CountryCard({ country }: PropsWithChildren<CountryCardProps>) {
+  const countries = useCountriesStore((state) => state.countries);
+  const setCountries = useCountriesStore((state) => state.setCountries);
   const handleCountryClick = (): void => {
     const index = countries.findIndex((currentCountry) => {
       return currentCountry.name.common === country.name.common;
