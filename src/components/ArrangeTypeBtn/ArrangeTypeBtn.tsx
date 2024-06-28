@@ -1,11 +1,16 @@
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { ArrangeTypeBtnTailwind } from "../common/Styles/ArrangeTypeBtn.style";
-import { ArrangeTypeBtnProps } from "../../types/ArrangeTypeBtnProps.type";
+import useCountriesStore from "../../zustand/countriesStore";
 
-function ArrangeTypeBtn({
-  alphabeticalAarrrange,
-  setAlphabeticalArrange,
-}: PropsWithChildren<ArrangeTypeBtnProps>) {
+function ArrangeTypeBtn() {
+  const setAlphabeticalArrange = useCountriesStore(
+    (state) => state.setAlphabeticalArrrange,
+  );
+
+  const alphabeticalAarrrange = useCountriesStore(
+    (state) => state.alphabeticalArrrange,
+  );
+
   const [buttonTextAlphabetical, setButtonTextAlphabetical] = useState<string>(
     alphabeticalAarrrange ? "현재 정렬: 알파벳순" : "현재 정렬: 알파벳 역순",
   );

@@ -1,12 +1,9 @@
-import { PropsWithChildren } from "react";
-import { CountryListSectionProps } from "../../types/CountryListSectionProps.type";
+import useCountriesStore from "../../zustand/countriesStore";
 import CountryCard from "../CountryCard";
 import { ListTailwind } from "../common/Styles/CountryList.style";
 
-function SelectedCountryListSection({
-  countries,
-  setCountries,
-}: PropsWithChildren<CountryListSectionProps>) {
+function SelectedCountryListSection() {
+  const countries = useCountriesStore((state) => state.countries);
   return (
     <>
       <h1 className="mx-auto w-max text-center text-3xl font-bold mt-4 mb-12">
@@ -19,8 +16,6 @@ function SelectedCountryListSection({
               <CountryCard
                 key={country.name.common}
                 country={country}
-                countries={countries}
-                setCountries={setCountries}
               ></CountryCard>
             );
           }

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import OtherCountryListSection from "./components/OtherCountryListSection";
 import SelectedCountryListSection from "./components/SelectedCountryListSection";
 import { tCountry } from "./types/Country.type";
@@ -8,12 +8,15 @@ import ArrangeTypeBtn from "./components/ArrangeTypeBtn";
 import "./index.css";
 import { fetchSelectedCountries } from "./api/jsonServer";
 import { tJsonServerArrayElement } from "./types/JsonServerArrayElement.type";
+import useCountriesStore from "./zustand/countriesStore";
 
 function App() {
-  const [countries, setCountries] = useState<tCountry[]>([]);
+  const countries = useCountriesStore((state) => state.countries);
+  const setCountries = useCountriesStore((state) => state.setCountries);
 
-  const [alphabeticalAarrrange, setAlphabeticalArrange] =
-    useState<boolean>(true);
+  const alphabeticalAarrrange = useCountriesStore(
+    (state) => state.alphabeticalArrrange,
+  );
 
   useEffect(() => {
     const prepareCountryData = async () => {
@@ -90,19 +93,11 @@ function App() {
 
   return (
     <>
-      <ArrangeTypeBtn
-        alphabeticalAarrrange={alphabeticalAarrrange}
-        setAlphabeticalArrange={setAlphabeticalArrange}
-      />
+      <ArrangeTypeBtn />
 
-      <SelectedCountryListSection
-        countries={countries}
-        setCountries={setCountries}
-      />
-      <OtherCountryListSection
-        countries={countries}
-        setCountries={setCountries}
-      />
+      <SelectedCountryListSection />
+
+      <OtherCountryListSection />
     </>
   );
 }
